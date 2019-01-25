@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "CSD1",
+    "image": "https://cdn3-www.comingsoon.net/assets/uploads/2019/01/sandiegoheader.jpg"
+
+  },
+  {
+    "id": 2,
+    "name": "CSD2",
+    "image": "https://gamefragger.com/images/articles/banners/13086.jpg"
+
+  },
+  {
+    "id": 3,
+    "name": "CSD3",
+    "image": "https://media.comicbook.com/2018/12/netflix-carmen-sandiego-finn-wolfhard-header-1150876-640x320.jpeg"
+
+  },
+  {
+    "id": 4,
+    "name": "CSD4",
+    "image": "http://static1.squarespace.com/static/51b3dc8ee4b051b96ceb10de/51ce6099e4b0d911b4489b79/5c1ae0b588251bd4aede9bb2/1545343316606/player1.jpg?format=1500w"
+
+  },
+  {
+    "id": 5,
+    "name": "CSD5",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZyP6UXPXmTLEMsRcGcQLRanPlgBM7rA0Rqfz2y3Ojwek3TQtCcg"
+
+  },
+  {
+    "id": 6,
+    "name": "CSD6",
+    "image": "https://vignette.wikia.nocookie.net/carmensandiego/images/4/4b/Tumblr_plouc5hYAR1vpyzde_640.jpg/revision/latest?cb=20190122040650"
+
+  },
+  {
+    "id": 7,
+    "name": "CSD7",
+    "image": "https://occ-0-2433-999.1.nflxso.net/art/14a04/1bb5f7e743c1634f764ce75021c4f84335314a04.jpg"
+
+  },
+  {
+    "id": 8,
+    "name": "CSD8",
+    "image": "https://i.dailymail.co.uk/1s/2019/01/05/04/8149476-6559587-Also_starring_Finn_Wolfhard_of_Stranger_Things_fame_will_provide-a-5_1546661735931.jpg"
+
+  },
+  {
+    "id": 9,
+    "name": "CSD9",
+    "image": "https://pogd.es/assets/episodes/Carmen-Sandiego/Carmen-Sandiego-S01E09-96b9e81dc7016e6565a1d35fcce9b4dd-thumb.jpg"
+
+  },
+  {
+    "id": 10,
+    "name": "CSD10",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQODEnHsmXkdrRn1G4Sotrl85I0Fwf7HjUigqXPWl2EPB38hOcTg"
+
+  },
+  {
+    "id": 11,
+    "name": "CSD11",
+    "image": "https://occ-0-2433-999.1.nflxso.net/art/86967/f76f138f917ac86a84093ba3f3226ee761786967.jpg"
+
+  },
+  {
+    "id": 12,
+    "name": "CSD12",    
+    "image": "https://occ-0-2433-999.1.nflxso.net/art/9a30a/cb12518ad0e038373edf4865e88f52d1a0e9a30a.jpg"
+
+  }
+]
