@@ -1,50 +1,32 @@
-import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
+import React, { Component } from 'react';
+// import './index.css';
 import Header from "./components/Header";
-// import JumboT from "./components/JumboT";
-import Main from "./components/Main";
-import friends from "./friends.json";
+// import Main from "./components/Main";
+import FriendCard from "./components/FriendCard";
+import Friends from "./friends.json";
+import Main from './components/Main';
+
 
 
 class App extends Component {
-  // Setting this.state.friends to the friends json array
   state = {
-    friends: friends,
+    Friends: Friends,
     score: 0,
-    topScore: 0,
+    topscore: 0,
     shake: false,
-    gameOver: ""
-  };
-
-  shuffleCards = id => {
-    let sourceArray = this.state.friends
-    for (var i = 0; i < sourceArray.length - 1; i++) {
-      var j = i + Math.floor(Math.random() * (sourceArray.length - 1));
-
-      var x = sourceArray[j];
-
-      sourceArray[j] = sourceArray[i];
-
-      sourceArray[i] = x;
-    }
-
-    this.setState({ friends: sourceArray });
-
-  };
-
+    gameover: ""
+  }
 
   updateTopScore = score => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    this.state.topScore < score ? this.setState({ topScore: score }) : this.setState({ topScore: this.state.topScore })
-    // Set this.topScore equal to thetopScore array
+    this.state.topscore < score ? this.setState({ topscore: score }) : this.setState({ topscore: this.state.topscore })
   };
-
   updateScore = id => {
-    const filter = this.state.friends.filter(data => data.id);
-
-    if (filter.friends > 0) {
+    // filter the array friends to display only the index with id of id
+    const filtered = this.state.friends.filter(data => data.id === id);
+    // checks if the filtered var has any index in it 
+    if (filtered.length > 0) {
       //checks if the filtered index has the value clicked set to true
-      if (filter[0].clicked) {
+      if (filtered[0].clicked) {
         //if yes the game over
         this.shakePicture();
         this.setState({ gameover: "Game Over!" });
@@ -52,11 +34,11 @@ class App extends Component {
         this.newGame();
       } else {
         //if not , set that index .clicked to true 
-        filter[0].clicked = true;
+        filtered[0].clicked = true;
         // update the score 
         this.setState({ score: this.state.score + 1 });
         // shuffle the images
-        this.shuffleCards();
+        this.randomizeBoard();
       }
     }
   }
@@ -66,10 +48,10 @@ class App extends Component {
 
   }
   newGame() {
-    let friends = this.state.friends.map(data => {
+    let friends = this.state.friends.map(friends => {
 
-      data.clicked = false
-      return data;
+      friends.clicked = false
+      return friends;
     })
 
 
@@ -81,64 +63,61 @@ class App extends Component {
 
     })
 
-  
-
     this.shakePicture();
+
+  }
+  randomizeBoard = (id) => {
+    // initialize the var 
+    let sourceArray = this.state.friends
+    // loop the array and randomizes its indexes
+    for (var i = 0; i < sourceArray.length - 1; i++) {
+      var j = i + Math.floor(Math.random() * (sourceArray.length - i));
+      // creates a temp var to hold the index 
+      var temp = sourceArray[j];
+      //set the array index j with the value of the old array
+      sourceArray[j] = sourceArray[i];
+      //then sets the original index position to the temp value 
+      sourceArray[i] = temp;
+    }
+    // update the object array with its new order
+    this.setState({ friends: sourceArray });
+
+
 
 
 
   }
+  render() {
+    return (
+      <div className="container-fluid">
+        <nav>
+          score={this.state.score}
+          topscore={this.state.topscore}
+        </nav>
+        <Header />
+        <div>
+          <Main>
 
+            {this.state.friends.map((friends, index) => {
 
+              return (
+                <FriendCard
+                  key={index}
+                  id={friends.id}
+                  name={friends.name}
+                  image={friends.image}
+                  updateScore={this.updateScore}
+                  shake={this.state.shake}
+                />
 
-  // console.log(this.state.friends);
-  // console.log("help");
+              );
+            })};
 
-
-
-
-
-
-
-
-  render(){
-  return(
-      <div className = "container-fluid" >
-      <nav>
-        <p>Score: {this.state.score}</p>
-        <p>Top Score: {this.state.topScore}</p>
-      </nav>
-
-      <Header />
-
-      <Main>
-
-        {console.log(this.state.friends)}
-
-        {this.state.friends.map((friend, index) => {
-          return (
-            <FriendCard
-
-              id={friend.id}
-              key={friend.id}
-              // name={friend.name}
-              image={friend.image}
-              updateScore={this.updateScore}
-            // location={friends.location}
-            />
-          )
-        })}
       </Main>
         </div>
-        
-  );
-
-        
-        
-        
-        
-      }       
-        
-};
+      </div>
+    );
+  }
+}
 
 export default App;
