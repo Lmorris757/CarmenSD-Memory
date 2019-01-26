@@ -16,36 +16,7 @@ class App extends Component {
     gameOver: ""
   };
 
-  updateTopScore = score => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    this.state.topScore < score ? this.setState({ topScore: score }) : this.setState({ topScore: this.state.topScore })
-    // Set this.topScore equal to thetopScore array
-  };
-
-  updateScore = id => {
-    console.log("help");
-    this.setState({
-      score: this.state.score + 1
-    });
-    // const filter = this.state.friends.filter(data => data.id === id);
-    // if (filter.length > 0){
-    //   if (filter[0].clicked){
-    //     this.setState({ gameOver: "You Lose! GAAAME OVER!"});
-    //     this.updateScore(this.state.score);
-    //     this.newRound();
-    //   }
-    //   else {
-    //     filter[0].clicked = true;
-
-    //     this.setState({ score: this.state.score + 1});
-
-    //     this.shuffleCards(id);
-    //   }
-
-    // }
-  }
-
-  shuffleCards = (id) => {
+  shuffleCards = id => {
     let sourceArray = this.state.friends
     for (var i = 0; i < sourceArray.length - 1; i++) {
       var j = i + Math.floor(Math.random() * (sourceArray.length - 1));
@@ -58,43 +29,116 @@ class App extends Component {
     }
 
     this.setState({ friends: sourceArray });
+
+  };
+
+
+  updateTopScore = score => {
+    // Filter this.state.friends for friends with an id not equal to the id being removed
+    this.state.topScore < score ? this.setState({ topScore: score }) : this.setState({ topScore: this.state.topScore })
+    // Set this.topScore equal to thetopScore array
+  };
+
+  updateScore = id => {
+    const filter = this.state.friends.filter(data => data.id);
+
+    if (filter.friends > 0) {
+      //checks if the filtered index has the value clicked set to true
+      if (filter[0].clicked) {
+        //if yes the game over
+        this.shakePicture();
+        this.setState({ gameover: "Game Over!" });
+        this.updateTopScore(this.state.score);
+        this.newGame();
+      } else {
+        //if not , set that index .clicked to true 
+        filter[0].clicked = true;
+        // update the score 
+        this.setState({ score: this.state.score + 1 });
+        // shuffle the images
+        this.shuffleCards();
+      }
+    }
+  }
+  shakePicture() {
+    this.setState({ shake: !this.state.shake });
+    console.log("shake activated");
+
+  }
+  newGame() {
+    let friends = this.state.friends.map(data => {
+
+      data.clicked = false
+      return data;
+    })
+
+
+    this.setState({
+      score: 0,
+      friends,
+      gameover: ""
+
+
+    })
+
+  
+
+    this.shakePicture();
+
+
+
   }
 
-  render() {
-    return (
 
-      <div className="container-fluid">
-        {/* <nav
-        score={this.state.score}
-        topScore={this.state.topScore}
-      /> */}
-        <nav>
-          <p>Score: {this.state.score}</p>
-          <p>Top Score: {this.state.topScore}</p>
-        </nav>
 
-        <Header />
+  // console.log(this.state.friends);
+  // console.log("help");
 
-        <Main>
 
-          {this.state.friends.map((friend, index) => {
-            return (
-              <FriendCard
 
-                id={friend.id}
-                key={friend.id}
-                // name={friend.name}
-                image={friend.image}
-                updateScore={this.updateScore}
-              // location={friends.location}
-              />
-            )
-          })}
-        </Main>
-      </div>
 
-    );
-  }
-}
+
+
+
+
+  render(){
+  return(
+      <div className = "container-fluid" >
+      <nav>
+        <p>Score: {this.state.score}</p>
+        <p>Top Score: {this.state.topScore}</p>
+      </nav>
+
+      <Header />
+
+      <Main>
+
+        {console.log(this.state.friends)}
+
+        {this.state.friends.map((friend, index) => {
+          return (
+            <FriendCard
+
+              id={friend.id}
+              key={friend.id}
+              // name={friend.name}
+              image={friend.image}
+              updateScore={this.updateScore}
+            // location={friends.location}
+            />
+          )
+        })}
+      </Main>
+        </div>
+        
+  );
+
+        
+        
+        
+        
+      }       
+        
+};
 
 export default App;
