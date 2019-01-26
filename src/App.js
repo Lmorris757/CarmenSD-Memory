@@ -10,7 +10,7 @@ import Main from './components/Main';
 
 class App extends Component {
   state = {
-    Friends: Friends,
+    friends: Friends,
     score: 0,
     topscore: 0,
     shake: false,
